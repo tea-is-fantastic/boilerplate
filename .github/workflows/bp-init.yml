@@ -1,0 +1,43 @@
+name: Boilerplate
+on:
+  push:
+    branches: [ "workflow" ]
+  workflow_dispatch:
+
+env:
+  OUTPUT_PATH: '${{ github.workspace }}/output'
+  DATA_PATH: '${{ github.workspace }}/data'
+  APP_PATH: '${{ github.workspace }}/app'
+  ANDROID_PATH: '${{ github.workspace }}/output/android'
+  API_TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: halaat
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Setup Git
+        run: |
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global init.defaultBranch "main"
+          rm -rf .git/          
+
+      - name: Setup Boilerplate
+        run: npx @tisf/bp-init
+
+      - name: Push changes
+        uses: cpina/github-action-push-to-another-repository@main
+        with:
+          source-directory: .
+          destination-github-username: 'ProvincePK'
+          destination-repository-name: 'province'
+          user-email: github-actions[bot]@users.noreply.github.
+          user-name: github-actions[bot]
+          target-branch: main
