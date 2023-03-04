@@ -1,4 +1,6 @@
 name: Boilerplate
+permissions:
+  contents: write
 on:
   push:
     branches: [ "workflow" ]
