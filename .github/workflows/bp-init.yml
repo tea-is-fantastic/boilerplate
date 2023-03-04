@@ -36,8 +36,8 @@ jobs:
         uses: cpina/github-action-push-to-another-repository@main
         with:
           source-directory: .
-          destination-github-username: 'ProvincePK'
-          destination-repository-name: 'province'
+          destination-github-username: 'tea-is-fantastic'
+          destination-repository-name: 'boilerplate'
           user-email: github-actions[bot]@users.noreply.github.
           user-name: github-actions[bot]
           target-branch: main
